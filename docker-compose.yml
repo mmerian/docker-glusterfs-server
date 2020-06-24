@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+    gluster1:
+        container_name: gluster1
+        image: mmerian/glusterfs-server
+        privileged: true
+        networks:
+            - gluster
+        volumes:
+            - ./gluster1/data:/data
+            - ./gluster1/var/lib/glusterd:/var/lib/glusterd
+            - ./gluster1/var/log/glusterfs:/var/log/glusterfs
+
+    gluster2:
+        container_name: gluster2
+        image: mmerian/glusterfs-server
+        privileged: true
+        networks:
+            - gluster
+        volumes:
+            - ./gluster2/data:/data
+            - ./gluster2/var/lib/glusterd:/var/lib/glusterd
+            - ./gluster2/var/log/glusterfs:/var/log/glusterfs
+
+networks:
+    gluster:
+        name: gluster
